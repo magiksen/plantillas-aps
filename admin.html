@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administración - Sistema de Gestión APS y Clínica</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="min-h-screen flex">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-primary-800 text-white hidden md:block">
+            <div class="p-4 flex items-center border-b border-primary-700">
+                <i class="fas fa-clinic-medical text-2xl mr-3"></i>
+                <h1 class="text-xl font-semibold">APS Sistema</h1>
+            </div>
+            <nav class="mt-5">
+                <a href="index.html" class="flex items-center py-3 px-4 hover:bg-primary-700 transition-colors">
+                    <i class="fas fa-home w-6"></i>
+                    <span>Inicio</span>
+                </a>
+                <a href="admision.html" class="flex items-center py-3 px-4 hover:bg-primary-700 transition-colors">
+                    <i class="fas fa-user-plus w-6"></i>
+                    <span>Admisión</span>
+                </a>
+                <a href="consultas.html" class="flex items-center py-3 px-4 hover:bg-primary-700 transition-colors">
+                    <i class="fas fa-stethoscope w-6"></i>
+                    <span>Consultas Médicas</span>
+                </a>
+                <a href="laboratorio.html" class="flex items-center py-3 px-4 hover:bg-primary-700 transition-colors">
+                    <i class="fas fa-flask w-6"></i>
+                    <span>Laboratorio</span>
+                </a>
+                <a href="imagenologia.html" class="flex items-center py-3 px-4 hover:bg-primary-700 transition-colors">
+                    <i class="fas fa-x-ray w-6"></i>
+                    <span>Imagenología</span>
+                </a>
+                <a href="admin.html" class="flex items-center py-3 px-4 bg-primary-700">
+                    <i class="fas fa-cog w-6"></i>
+                    <span>Administración</span>
+                </a>
+                <a href="reportes.html" class="flex items-center py-3 px-4 hover:bg-primary-700 transition-colors">
+                    <i class="fas fa-chart-bar w-6"></i>
+                    <span>Reportes</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main content -->
+        <div class="flex-1 flex flex-col">
+            <!-- Top navbar -->
+            <header class="bg-white shadow-sm">
+                <div class="flex justify-between items-center px-4 py-3">
+                    <button class="md:hidden text-gray-600">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                    <div class="flex items-center space-x-4">
+                        <div class="relative">
+                            <i class="fas fa-bell text-gray-500"></i>
+                            <span class="absolute -top-1 -right-1 bg-red-500 text-white rounded-full w-4 h-4 text-xs flex items-center justify-center">3</span>
+                        </div>
+                        <div class="flex items-center">
+                            <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Profile" class="w-8 h-8 rounded-full">
+                            <span class="ml-2 text-sm font-medium text-gray-700">Admin Sistema</span>
+                            <i class="fas fa-chevron-down ml-2 text-xs text-gray-500"></i>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Admin content -->
+            <main class="flex-1 p-5">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-semibold text-gray-800">Panel de Administración</h2>
+                </div>
+
+                <!-- Admin Tabs -->
+                <div class="bg-white rounded-lg shadow mb-6">
+                    <div class="border-b border-gray-200">
+                        <nav class="flex -mb-px">
+                            <a href="#" class="border-primary-500 text-primary-600 whitespace-nowrap py-4 px-6 border-b-2 font-medium text-sm">Catálogos</a>
+                            <a href="#" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-6 border-b-2 font-medium text-sm">Usuarios</a>
+                            <a href="#" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-6 border-b-2 font-medium text-sm">Organizaciones</a>
+                            <a href="#" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-6 border-b-2 font-medium text-sm">Configuración</a>
+                        </nav>
+                    </div>
+                </div>
+
+                <!-- Catálogos Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                    <!-- Especialidades -->
+                    <div class="bg-white rounded-lg shadow">
+                        <div class="p-5 border-b border-gray-200 flex justify-between items-center">
+                            <h3 class="text-lg font-medium text-gray-800">Especialidades</h3>
+                            <button class="bg-primary-600 text-white p-2 rounded-lg">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                        <div class="p-5">
+                            <div class="space-y-4">
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-800">Medicina General</p>
+                                        <p class="text-xs text-gray-500">Código: ESP-001</p>
+                                    </div>
+                                    <div class="flex space-x-2">
+                                        <button class="text-gray-500 hover:text-primary-600">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="text-gray-500 hover:text-red-600">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-800">Pediatría</p>
+                                        <p class="text-xs text-gray-500">Código: ESP-002</p>
+                                    </div>
+                                    <div class="flex space-x-2">
+                                        <button class="text-gray-500 hover:text-primary-600">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="text-gray-500 hover:text-red-600">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-800">Ginecología</p>
+                                        <p class="text-xs text-gray-500">Código: ESP-003</p>
+                                    </div>
+                                    <div class="flex space-x-2">
+                                        <button class="text-gray-500 hover:text-primary-600">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="text-gray-500 hover:text-red-600">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-800">Cardiología</p>
+                                        <p class="text-xs text-gray-500">Código: ESP-004</p>
+                                    </div>
+                                    <div class="flex space-x-2">
+                                        <button class="text-gray-500 hover:text-primary-600">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="text-gray-500 hover:text-red-600">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4 text-center">
+                                <a href="#" class="text-primary-600 text-sm">Ver todos</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Exámenes de Laboratorio -->
+                    <div class="bg-white rounded-lg shadow">
+                        <div class="p-5 border-b border-gray-200 flex justify-between items-center">
+                            <h3 class="text-lg font-medium text-gray-800">Exámenes de Laboratorio</h3>
+                            <button class="bg-primary-600 text-white p-2 rounded-lg">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                        <div class="p-5">
+                            <div class="space-y-4">
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-800">Hemograma Completo</p>
+                                        <p class="text-xs text-gray-500">Código: LAB-001</p>
+                                    </div>
+                                    <div class="flex space-x-2">
+                                        <button class="text-gray-500 hover:text-primary-600">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="text-gray-500 hover:text-red-600">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-800">Perfil Bioquímico</p>
+                                        <p class="text-xs text-gray-500">Código: LAB-002</p>
+                                    </div>
+                                    <div class="flex space-x-2">
+                                        <button class="text-gray-500 hover:text-primary-600">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="text-gray-500 hover:text-red-600">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-800">Perfil Lipídico</p>
+                                        <p class="text-xs text-gray-500">Código: LAB-003</p>
+                                    </div>
+                                    <div class="flex space-x-2">
+                                        <button class="text-gray-500 hover:text-primary-600">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="text-gray-500 hover:text-red-600">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-800">Examen de Orina</p>
+                                        <p class="text-xs text-gray-500">Código: LAB-004</p>
+                                    </div>
+                                    <div class="flex space-x-2">
+                                        <button class="text-gray-500 hover:text-primary-600">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="text-gray-500 hover:text-red-600">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4 text-center">
+                                <a href="#" class="text-primary-600 text-sm">Ver todos</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Estudios de Imagenología -->
+                    <div class="bg-white rounded-lg shadow">
+                        <div class="p-5 border-b border-gray-200 flex justify-between items-center">
+                            <h3 class="text-lg font-medium text-gray-800">Estudios de Imagenología</h3>
+                            <button class="bg-primary-600 text-white p-2 rounded-lg">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                        <div class="p-5">
+                            <div class="space-y-4">
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-800">Ecografía Abdominal</p>
+                                        <p class="text-xs text-gray-500">Código: IMG-001</p>
+                                    </div>
+                                    <div class="flex space-x-2">
+                                        <button class="text-gray-500 hover:text-primary-600">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="text-gray-500 hover:text-red-600">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-800">Radiografía de Tórax</p>
+                                        <p class="text-xs text-gray-500">Código: IMG-002</p>
+                                    </div>
+                                    <div class="flex space-x-2">
+                                        <button class="text-gray-500 hover:text-primary-600">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="text-gray-500 hover:text-red-600">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-800">Ecografía Obstétrica</p>
+                                        <p class="text-xs text-gray-500">Código: IMG-003</p>
+                                    </div>
+                                    <div class="flex space-x-2">
+                                        <button class="text-gray-500 hover:text-primary-600">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="text-gray-500 hover:text-red-600">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-800">Ecografía Mamaria</p>
+                                        <p class="text-xs text-gray-500">Código: IMG-004</p>
+                                    </div>
+                                    <div class="flex space-x-2">
+                                        <button class="text-gray-500 hover:text-primary-600">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="text-gray-500 hover:text-red-600">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4 text-center">
+                                <a href="#" class="text-primary-600 text-sm">Ver todos</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Medicamentos y Diagnósticos -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <!-- Medicamentos -->
+                    <div class="bg-white rounded-lg shadow">
+                        <div class="p-5 border-b border-gray-200 flex justify-between items-center">
+                            <h3 class="text-lg font-medium text-gray-800">Medicamentos</h3>
+                            <button class="bg-primary-600 text-white p-2 rounded-lg">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                        <div class="p-5">
+                            <div class="relative">
+                                <input type="text" placeholder="Buscar medicamento..." class="w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500">
+                                <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                            </div>
+                            <div class="mt-4 space-y-4">
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-800">Paracetamol 500mg</p>
+                                        <p class="text-xs text-gray-500">Código: MED-001</p>
+                                    </div>
+                                    <div class="flex space-x-2">
+                                        <button class="text-gray-500 hover:text-primary-600">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="text-gray-500 hover:text-red-600">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-800">Ibuprofeno 400mg</p>
+                                        <p class="text-xs text-gray-500">Código: MED-002</p>
+                                    </div>
+                                    <div class="flex space-x-2">
+                                        <button class="text-gray-500 hover:text-primary-600">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="text-gray-500 hover:text-red-600">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-800">Amoxicilina 500mg</p>
+                                        <p class="text-xs text-gray-500">Código: MED-003</p>
+                                    </div>
+                                    <div class="flex space-x-2">
+                                        <button class="text-gray-500 hover:text-primary-600">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="text-gray-500 hover:text-red-600">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-800">Enalapril 10mg</p>
+                                        <p class="text-xs text-gray-500">Código: MED-004</p>
+                                    </div>
+                                    <div class="flex space-x-2">
+                                        <button class="text-gray-500 hover:text-primary-600">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="text-gray-500 hover:text-red-600">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4 text-center">
+                                <a href="#" class="text-primary-600 text-sm">Ver todos</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Diagnósticos -->
+                    <div class="bg-white rounded-lg shadow">
+                        <div class="p-5 border-b border-gray-200 flex justify-between items-center">
+                            <h3 class="text-lg font-medium text-gray-800">Diagnósticos</h3>
+                            <button class="bg-primary-600 text-white p-2 rounded-lg">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                        <div class="p-5">
+                            <div class="relative">
+                                <input type="text" placeholder="Buscar diagnóstico..." class="w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500">
+                                <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                            </div>
+                            <div class="mt-4 space-y-4">
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-800">I10 - Hipertensión esencial (primaria)</p>
+                                        <p class="text-xs text-gray-500">CIE-10</p>
+                                    </div>
+                                    <div class="flex space-x-2">
+                                        <button class="text-gray-500 hover:text-primary-600">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="text-gray-500 hover:text-red-600">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-800">E11 - Diabetes mellitus tipo 2</p>
+                                        <p class="text-xs text-gray-500">CIE-10</p>
+                                    </div>
+                                    <div class="flex space-x-2">
+                                        <button class="text-gray-500 hover:text-primary-600">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="text-gray-500 hover:text-red-600">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-800">J00 - Rinofaringitis aguda</p>
+                                        <p class="text-xs text-gray-500">CIE-10</p>
+                                    </div>
+                                    <div class="flex space-x-2">
+                                        <button class="text-gray-500 hover:text-primary-600">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="text-gray-500 hover:text-red-600">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-800">R53 - Malestar y fatiga</p>
+                                        <p class="text-xs text-gray-500">CIE-10</p>
+                                    </div>
+                                    <div class="flex space-x-2">
+                                        <button class="text-gray-500 hover:text-primary-600">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="text-gray-500 hover:text-red-600">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4 text-center">
+                                <a href="#" class="text-primary-600 text-sm">Ver todos</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('button').addEventListener('click', function() {
+            const sidebar = document.querySelector('aside');
+            sidebar.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>

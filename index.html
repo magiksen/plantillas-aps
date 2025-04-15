@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Gestión APS y Clínica</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="min-h-screen flex">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-primary-800 text-white hidden md:block">
+            <div class="p-4 flex items-center border-b border-primary-700">
+                <i class="fas fa-clinic-medical text-2xl mr-3"></i>
+                <h1 class="text-xl font-semibold">APS Sistema</h1>
+            </div>
+            <nav class="mt-5">
+                <a href="index.html" class="flex items-center py-3 px-4 bg-primary-700">
+                    <i class="fas fa-home w-6"></i>
+                    <span>Inicio</span>
+                </a>
+                <a href="admision.html" class="flex items-center py-3 px-4 hover:bg-primary-700 transition-colors">
+                    <i class="fas fa-user-plus w-6"></i>
+                    <span>Admisión</span>
+                </a>
+                <a href="consultas.html" class="flex items-center py-3 px-4 hover:bg-primary-700 transition-colors">
+                    <i class="fas fa-stethoscope w-6"></i>
+                    <span>Consultas Médicas</span>
+                </a>
+                <a href="laboratorio.html" class="flex items-center py-3 px-4 hover:bg-primary-700 transition-colors">
+                    <i class="fas fa-flask w-6"></i>
+                    <span>Laboratorio</span>
+                </a>
+                <a href="imagenologia.html" class="flex items-center py-3 px-4 hover:bg-primary-700 transition-colors">
+                    <i class="fas fa-x-ray w-6"></i>
+                    <span>Imagenología</span>
+                </a>
+                <a href="admin.html" class="flex items-center py-3 px-4 hover:bg-primary-700 transition-colors">
+                    <i class="fas fa-cog w-6"></i>
+                    <span>Administración</span>
+                </a>
+                <a href="reportes.html" class="flex items-center py-3 px-4 hover:bg-primary-700 transition-colors">
+                    <i class="fas fa-chart-bar w-6"></i>
+                    <span>Reportes</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main content -->
+        <div class="flex-1 flex flex-col">
+            <!-- Top navbar -->
+            <header class="bg-white shadow-sm">
+                <div class="flex justify-between items-center px-4 py-3">
+                    <button class="md:hidden text-gray-600">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                    <div class="flex items-center space-x-4">
+                        <div class="relative">
+                            <i class="fas fa-bell text-gray-500"></i>
+                            <span class="absolute -top-1 -right-1 bg-red-500 text-white rounded-full w-4 h-4 text-xs flex items-center justify-center">3</span>
+                        </div>
+                        <div class="flex items-center">
+                            <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="Profile" class="w-8 h-8 rounded-full">
+                            <span class="ml-2 text-sm font-medium text-gray-700">Dr. Juan Pérez</span>
+                            <i class="fas fa-chevron-down ml-2 text-xs text-gray-500"></i>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard content -->
+            <main class="flex-1 p-5">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-6">Panel de Control</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
+                    <div class="bg-white rounded-lg shadow p-5">
+                        <div class="flex justify-between">
+                            <div>
+                                <p class="text-gray-500 text-sm">Pacientes Hoy</p>
+                                <p class="text-2xl font-bold text-gray-800">124</p>
+                            </div>
+                            <div class="bg-blue-100 rounded-full w-12 h-12 flex items-center justify-center">
+                                <i class="fas fa-users text-primary-600"></i>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex items-center">
+                            <span class="text-green-500 text-sm flex items-center">
+                                <i class="fas fa-arrow-up mr-1"></i> 12%
+                            </span>
+                            <span class="text-gray-400 text-sm ml-2">vs ayer</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow p-5">
+                        <div class="flex justify-between">
+                            <div>
+                                <p class="text-gray-500 text-sm">Consultas Pendientes</p>
+                                <p class="text-2xl font-bold text-gray-800">28</p>
+                            </div>
+                            <div class="bg-yellow-100 rounded-full w-12 h-12 flex items-center justify-center">
+                                <i class="fas fa-stethoscope text-yellow-600"></i>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex items-center">
+                            <span class="text-red-500 text-sm flex items-center">
+                                <i class="fas fa-arrow-up mr-1"></i> 5%
+                            </span>
+                            <span class="text-gray-400 text-sm ml-2">vs ayer</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow p-5">
+                        <div class="flex justify-between">
+                            <div>
+                                <p class="text-gray-500 text-sm">Exámenes Lab.</p>
+                                <p class="text-2xl font-bold text-gray-800">45</p>
+                            </div>
+                            <div class="bg-green-100 rounded-full w-12 h-12 flex items-center justify-center">
+                                <i class="fas fa-flask text-green-600"></i>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex items-center">
+                            <span class="text-green-500 text-sm flex items-center">
+                                <i class="fas fa-arrow-down mr-1"></i> 3%
+                            </span>
+                            <span class="text-gray-400 text-sm ml-2">vs ayer</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow p-5">
+                        <div class="flex justify-between">
+                            <div>
+                                <p class="text-gray-500 text-sm">Imagenología</p>
+                                <p class="text-2xl font-bold text-gray-800">18</p>
+                            </div>
+                            <div class="bg-purple-100 rounded-full w-12 h-12 flex items-center justify-center">
+                                <i class="fas fa-x-ray text-purple-600"></i>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex items-center">
+                            <span class="text-green-500 text-sm flex items-center">
+                                <i class="fas fa-equals mr-1"></i> 0%
+                            </span>
+                            <span class="text-gray-400 text-sm ml-2">vs ayer</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
+                    <!-- Activity chart -->
+                    <div class="bg-white rounded-lg shadow p-5 lg:col-span-2">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="font-semibold text-gray-800">Actividad Diaria</h3>
+                            <select class="text-sm border rounded px-2 py-1">
+                                <option>Hoy</option>
+                                <option>Ayer</option>
+                                <option>Esta semana</option>
+                                <option>Este mes</option>
+                            </select>
+                        </div>
+                        <div class="h-64 flex items-end justify-between">
+                            <div class="w-1/12 flex flex-col items-center">
+                                <div class="bg-primary-500 w-full rounded-t" style="height: 40%"></div>
+                                <span class="text-xs mt-1 text-gray-500">8h</span>
+                            </div>
+                            <div class="w-1/12 flex flex-col items-center">
+                                <div class="bg-primary-500 w-full rounded-t" style="height: 60%"></div>
+                                <span class="text-xs mt-1 text-gray-500">9h</span>
+                            </div>
+                            <div class="w-1/12 flex flex-col items-center">
+                                <div class="bg-primary-500 w-full rounded-t" style="height: 80%"></div>
+                                <span class="text-xs mt-1 text-gray-500">10h</span>
+                            </div>
+                            <div class="w-1/12 flex flex-col items-center">
+                                <div class="bg-primary-500 w-full rounded-t" style="height: 90%"></div>
+                                <span class="text-xs mt-1 text-gray-500">11h</span>
+                            </div>
+                            <div class="w-1/12 flex flex-col items-center">
+                                <div class="bg-primary-500 w-full rounded-t" style="height: 70%"></div>
+                                <span class="text-xs mt-1 text-gray-500">12h</span>
+                            </div>
+                            <div class="w-1/12 flex flex-col items-center">
+                                <div class="bg-primary-500 w-full rounded-t" style="height: 50%"></div>
+                                <span class="text-xs mt-1 text-gray-500">13h</span>
+                            </div>
+                            <div class="w-1/12 flex flex-col items-center">
+                                <div class="bg-primary-500 w-full rounded-t" style="height: 65%"></div>
+                                <span class="text-xs mt-1 text-gray-500">14h</span>
+                            </div>
+                            <div class="w-1/12 flex flex-col items-center">
+                                <div class="bg-primary-500 w-full rounded-t" style="height: 85%"></div>
+                                <span class="text-xs mt-1 text-gray-500">15h</span>
+                            </div>
+                            <div class="w-1/12 flex flex-col items-center">
+                                <div class="bg-primary-500 w-full rounded-t" style="height: 75%"></div>
+                                <span class="text-xs mt-1 text-gray-500">16h</span>
+                            </div>
+                            <div class="w-1/12 flex flex-col items-center">
+                                <div class="bg-primary-500 w-full rounded-t" style="height: 45%"></div>
+                                <span class="text-xs mt-1 text-gray-500">17h</span>
+                            </div>
+                            <div class="w-1/12 flex flex-col items-center">
+                                <div class="bg-primary-500 w-full rounded-t" style="height: 25%"></div>
+                                <span class="text-xs mt-1 text-gray-500">18h</span>
+                            </div>
+                            <div class="w-1/12 flex flex-col items-center">
+                                <div class="bg-primary-500 w-full rounded-t" style="height: 10%"></div>
+                                <span class="text-xs mt-1 text-gray-500">19h</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent patients -->
+                    <div class="bg-white rounded-lg shadow p-5">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="font-semibold text-gray-800">Pacientes Recientes</h3>
+                            <a href="#" class="text-primary-600 text-sm">Ver todos</a>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="flex items-center">
+                                <img src="https://randomuser.me/api/portraits/women/12.jpg" alt="Patient" class="w-10 h-10 rounded-full">
+                                <div class="ml-3">
+                                    <p class="text-sm font-medium text-gray-800">María González</p>
+                                    <p class="text-xs text-gray-500">Consulta General • 10:30 AM</p>
+                                </div>
+                                <span class="ml-auto bg-green-100 text-green-800 text-xs px-2 py-1 rounded">Atendido</span>
+                            </div>
+                            <div class="flex items-center">
+                                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Patient" class="w-10 h-10 rounded-full">
+                                <div class="ml-3">
+                                    <p class="text-sm font-medium text-gray-800">Carlos Rodríguez</p>
+                                    <p class="text-xs text-gray-500">Laboratorio • 11:15 AM</p>
+                                </div>
+                                <span class="ml-auto bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded">En proceso</span>
+                            </div>
+                            <div class="flex items-center">
+                                <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Patient" class="w-10 h-10 rounded-full">
+                                <div class="ml-3">
+                                    <p class="text-sm font-medium text-gray-800">Ana Martínez</p>
+                                    <p class="text-xs text-gray-500">Ecografía • 12:00 PM</p>
+                                </div>
+                                <span class="ml-auto bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">Pendiente</span>
+                            </div>
+                            <div class="flex items-center">
+                                <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Patient" class="w-10 h-10 rounded-full">
+                                <div class="ml-3">
+                                    <p class="text-sm font-medium text-gray-800">José Hernández</p>
+                                    <p class="text-xs text-gray-500">Cardiología • 12:45 PM</p>
+                                </div>
+                                <span class="ml-auto bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">Pendiente</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('button').addEventListener('click', function() {
+            const sidebar = document.querySelector('aside');
+            sidebar.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
