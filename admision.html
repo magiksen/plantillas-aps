@@ -103,7 +103,7 @@
                 <div class="flex justify-between items-center mb-6">
                     <h2 class="text-2xl font-semibold text-gray-800">Admisión de Pacientes</h2>
                     <div class="flex space-x-2">
-                        <button class="bg-primary-600 text-white px-4 py-2 rounded-lg flex items-center">
+                        <button id="openModalBtn" class="bg-primary-600 text-white px-4 py-2 rounded-lg flex items-center">
                             <i class="fas fa-plus mr-2"></i>
                             <span>Nuevo Paciente</span>
                         </button>
@@ -115,11 +115,15 @@
                     <div class="flex flex-col md:flex-row md:items-center md:justify-between space-y-4 md:space-y-0">
                         <div class="flex-1 md:mr-4">
                             <div class="relative">
-                                <input type="text" placeholder="Buscar paciente por cédula..." class="w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500">
+                                <input type="text" id="patient-search" placeholder="Buscar paciente por cédula..." class="w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500">
                                 <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
                             </div>
                         </div>
                         <div class="flex space-x-2">
+                            <button id="search-patient-btn" class="bg-primary-600 text-white px-4 py-2 rounded-lg flex items-center">
+                                <i class="fas fa-search mr-2"></i>
+                                <span>Buscar</span>
+                            </button>
                             <button class="bg-primary-100 text-primary-700 px-4 py-2 rounded-lg flex items-center">
                                 <i class="fas fa-filter mr-2"></i>
                                 <span>Filtros</span>
@@ -150,117 +154,87 @@
                     </div>
                 </div>
 
-                <!-- Patient registration form -->
+                <!-- Order registration form -->
                 <div class="bg-white rounded-lg shadow mb-6">
-                    <div class="p-5 border-b border-gray-200">
-                        <h3 class="text-lg font-medium text-gray-800">Registro de Paciente</h3>
+                    <div class="p-5 border-b border-gray-200 flex justify-between items-center">
+                        <h3 class="text-lg font-medium text-gray-800">Registro de Nueva Orden</h3>
+                        <div class="text-sm text-gray-500">Fecha: <span id="current-date">20/04/2025</span></div>
                     </div>
                     <div class="p-5">
                         <form class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <!-- Personal Information -->
+                            <!-- Patient Information (Auto-filled) -->
                             <div class="md:col-span-2">
-                                <h4 class="text-md font-medium text-gray-700 mb-3">Información Personal</h4>
-                            </div>
-                            <div class="space-y-2">
-                                <label class="block text-sm font-medium text-gray-700">Cédula de Identidad</label>
-                                <div class="flex">
-                                    <input type="text" class="flex-1 border rounded-l-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500">
-                                    <button class="bg-primary-600 text-white px-4 py-2 rounded-r-lg">Verificar</button>
+                                <h4 class="text-md font-medium text-gray-700 mb-3">Información del Paciente</h4>
+                                <div class="bg-blue-50 p-3 rounded-lg mb-3 border border-blue-200">
+                                    <p class="text-sm text-blue-700">La información del paciente se rellenará automáticamente al buscar por cédula en el formulario superior.</p>
                                 </div>
                             </div>
                             <div class="space-y-2">
-                                <label class="block text-sm font-medium text-gray-700">Tipo de Documento</label>
-                                <select class="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500">
-                                    <option>Cédula Nacional</option>
-                                    <option>Pasaporte</option>
-                                    <option>Documento Extranjero</option>
-                                </select>
+                                <label class="block text-sm font-medium text-gray-700">Cédula de Identidad</label>
+                                <input type="text" id="patient-id" class="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500 bg-gray-100" readonly>
                             </div>
                             <div class="space-y-2">
-                                <label class="block text-sm font-medium text-gray-700">Nombres</label>
-                                <input type="text" class="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500">
-                            </div>
-                            <div class="space-y-2">
-                                <label class="block text-sm font-medium text-gray-700">Apellidos</label>
-                                <input type="text" class="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500">
+                                <label class="block text-sm font-medium text-gray-700">Nombres y Apellidos</label>
+                                <input type="text" id="patient-name" class="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500 bg-gray-100" readonly>
                             </div>
                             <div class="space-y-2">
                                 <label class="block text-sm font-medium text-gray-700">Fecha de Nacimiento</label>
-                                <input type="date" class="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500">
+                                <input type="text" id="patient-dob" class="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500 bg-gray-100" readonly>
                             </div>
                             <div class="space-y-2">
                                 <label class="block text-sm font-medium text-gray-700">Género</label>
-                                <select class="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500">
-                                    <option>Masculino</option>
-                                    <option>Femenino</option>
-                                    <option>Otro</option>
-                                </select>
+                                <input type="text" id="patient-gender" class="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500 bg-gray-100" readonly>
                             </div>
 
-                            <!-- Contact Information -->
+                            <!-- Contact Information (Auto-filled) -->
                             <div class="md:col-span-2 mt-4">
                                 <h4 class="text-md font-medium text-gray-700 mb-3">Información de Contacto</h4>
                             </div>
                             <div class="space-y-2">
                                 <label class="block text-sm font-medium text-gray-700">Teléfono</label>
-                                <input type="tel" class="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500">
+                                <input type="tel" id="patient-phone" class="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500 bg-gray-100" readonly>
                             </div>
                             <div class="space-y-2">
                                 <label class="block text-sm font-medium text-gray-700">Correo Electrónico</label>
-                                <input type="email" class="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500">
+                                <input type="email" id="patient-email" class="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500 bg-gray-100" readonly>
                             </div>
                             <div class="space-y-2 md:col-span-2">
                                 <label class="block text-sm font-medium text-gray-700">Dirección</label>
-                                <input type="text" class="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500">
+                                <input type="text" id="patient-address" class="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500 bg-gray-100" readonly>
                             </div>
 
-                            <!-- Insurance Information -->
+                            <!-- Insurance Information (Auto-filled) -->
                             <div class="md:col-span-2 mt-4">
                                 <h4 class="text-md font-medium text-gray-700 mb-3">Información de Seguro</h4>
                             </div>
                             <div class="space-y-2">
                                 <label class="block text-sm font-medium text-gray-700">Aseguradora</label>
-                                <select class="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500">
-                                    <option>Seleccionar...</option>
-                                    <option>Seguro Nacional de Salud</option>
-                                    <option>Aseguradora Privada A</option>
-                                    <option>Aseguradora Privada B</option>
-                                    <option>Sin seguro</option>
-                                </select>
+                                <input type="text" id="patient-insurance" class="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500 bg-gray-100" readonly>
                             </div>
                             <div class="space-y-2">
                                 <label class="block text-sm font-medium text-gray-700">Número de Póliza</label>
-                                <div class="flex">
-                                    <input type="text" class="flex-1 border rounded-l-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500">
-                                    <button class="bg-primary-600 text-white px-4 py-2 rounded-r-lg">Verificar</button>
-                                </div>
+                                <input type="text" id="patient-policy" class="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500 bg-gray-100" readonly>
                             </div>
 
-                            <!-- Document Upload -->
+                            <!-- Order Information -->
                             <div class="md:col-span-2 mt-4">
-                                <h4 class="text-md font-medium text-gray-700 mb-3">Documentos</h4>
+                                <h4 class="text-md font-medium text-gray-700 mb-3">Información de la Orden</h4>
                             </div>
                             <div class="space-y-2">
-                                <label class="block text-sm font-medium text-gray-700">Cédula de Identidad</label>
-                                <div class="flex items-center">
-                                    <input type="file" class="hidden" id="id-upload">
-                                    <label for="id-upload" class="cursor-pointer bg-gray-100 text-gray-700 px-4 py-2 rounded-lg border border-gray-300 flex items-center">
-                                        <i class="fas fa-upload mr-2"></i>
-                                        <span>Subir documento</span>
-                                    </label>
-                                    <span class="ml-3 text-sm text-gray-500">No se ha seleccionado archivo</span>
-                                </div>
+                                <label class="block text-sm font-medium text-gray-700">Número de Orden</label>
+                                <input type="text" id="order-number" value="ORD-2025042001" class="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500 bg-gray-100" readonly>
                             </div>
                             <div class="space-y-2">
-                                <label class="block text-sm font-medium text-gray-700">Carnet de Seguro</label>
-                                <div class="flex items-center">
-                                    <input type="file" class="hidden" id="insurance-upload">
-                                    <label for="insurance-upload" class="cursor-pointer bg-gray-100 text-gray-700 px-4 py-2 rounded-lg border border-gray-300 flex items-center">
-                                        <i class="fas fa-upload mr-2"></i>
-                                        <span>Subir documento</span>
-                                    </label>
-                                    <span class="ml-3 text-sm text-gray-500">No se ha seleccionado archivo</span>
-                                </div>
+                                <label class="block text-sm font-medium text-gray-700">Prioridad</label>
+                                <select class="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500">
+                                    <option>Normal</option>
+                                    <option>Urgente</option>
+                                    <option>Emergencia</option>
+                                </select>
+                            </div>
+                            <div class="space-y-2 md:col-span-2">
+                                <label class="block text-sm font-medium text-gray-700">Notas Adicionales</label>
+                                <textarea class="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500" rows="3" placeholder="Ingrese notas o instrucciones especiales para esta orden..."></textarea>
                             </div>
 
                             <!-- Service Assignment -->
@@ -322,7 +296,7 @@
                             <!-- Submit button -->
                             <div class="md:col-span-2 mt-6 flex justify-end">
                                 <button type="button" class="bg-gray-200 text-gray-700 px-6 py-2 rounded-lg mr-2">Cancelar</button>
-                                <button type="submit" class="bg-primary-600 text-white px-6 py-2 rounded-lg">Registrar y Asignar</button>
+                                <button type="submit" class="bg-primary-600 text-white px-6 py-2 rounded-lg">Crear Orden</button>
                             </div>
                         </form>
                     </div>
@@ -331,9 +305,140 @@
         </div>
     </div>
 
+    <!-- Patient Registration Modal -->
+    <div id="patientModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-lg shadow-lg w-full max-w-4xl max-h-screen overflow-y-auto">
+            <div class="p-5 border-b border-gray-200 flex justify-between items-center sticky top-0 bg-white z-10">
+                <h3 class="text-lg font-medium text-gray-800">Registro de Nuevo Paciente</h3>
+                <button id="closeModalBtn" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <div class="p-5">
+                <form class="grid grid-cols-1 md:grid-cols-2 gap-6" id="patientRegistrationForm">
+                    <!-- Personal Information -->
+                    <div class="md:col-span-2">
+                        <h4 class="text-md font-medium text-gray-700 mb-3">Información Personal</h4>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="block text-sm font-medium text-gray-700">Cédula de Identidad *</label>
+                        <input type="text" name="idNumber" class="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500" required>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="block text-sm font-medium text-gray-700">Nombres *</label>
+                        <input type="text" name="firstName" class="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500" required>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="block text-sm font-medium text-gray-700">Apellidos *</label>
+                        <input type="text" name="lastName" class="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500" required>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="block text-sm font-medium text-gray-700">Fecha de Nacimiento *</label>
+                        <input type="date" name="dob" class="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500" required>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="block text-sm font-medium text-gray-700">Género *</label>
+                        <select name="gender" class="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500" required>
+                            <option value="">Seleccionar...</option>
+                            <option value="Masculino">Masculino</option>
+                            <option value="Femenino">Femenino</option>
+                            <option value="Otro">Otro</option>
+                        </select>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="block text-sm font-medium text-gray-700">Estado Civil</label>
+                        <select name="maritalStatus" class="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500">
+                            <option value="">Seleccionar...</option>
+                            <option value="Soltero/a">Soltero/a</option>
+                            <option value="Casado/a">Casado/a</option>
+                            <option value="Divorciado/a">Divorciado/a</option>
+                            <option value="Viudo/a">Viudo/a</option>
+                        </select>
+                    </div>
+
+                    <!-- Contact Information -->
+                    <div class="md:col-span-2 mt-4">
+                        <h4 class="text-md font-medium text-gray-700 mb-3">Información de Contacto</h4>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="block text-sm font-medium text-gray-700">Teléfono *</label>
+                        <input type="tel" name="phone" class="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500" required>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="block text-sm font-medium text-gray-700">Correo Electrónico</label>
+                        <input type="email" name="email" class="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500">
+                    </div>
+                    <div class="space-y-2 md:col-span-2">
+                        <label class="block text-sm font-medium text-gray-700">Dirección *</label>
+                        <input type="text" name="address" class="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500" required>
+                    </div>
+
+                    <!-- Insurance Information -->
+                    <div class="md:col-span-2 mt-4">
+                        <h4 class="text-md font-medium text-gray-700 mb-3">Información de Seguro</h4>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="block text-sm font-medium text-gray-700">Aseguradora</label>
+                        <select name="insurance" class="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500">
+                            <option value="">Seleccionar...</option>
+                            <option value="Seguro Nacional de Salud">Seguro Nacional de Salud</option>
+                            <option value="Seguro Privado A">Seguro Privado A</option>
+                            <option value="Seguro Privado B">Seguro Privado B</option>
+                            <option value="Sin Seguro">Sin Seguro</option>
+                        </select>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="block text-sm font-medium text-gray-700">Número de Póliza</label>
+                        <input type="text" name="policyNumber" class="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500">
+                    </div>
+
+                    <!-- Emergency Contact -->
+                    <div class="md:col-span-2 mt-4">
+                        <h4 class="text-md font-medium text-gray-700 mb-3">Contacto de Emergencia</h4>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="block text-sm font-medium text-gray-700">Nombre Completo</label>
+                        <input type="text" name="emergencyName" class="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500">
+                    </div>
+                    <div class="space-y-2">
+                        <label class="block text-sm font-medium text-gray-700">Teléfono</label>
+                        <input type="tel" name="emergencyPhone" class="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500">
+                    </div>
+                    <div class="space-y-2">
+                        <label class="block text-sm font-medium text-gray-700">Relación</label>
+                        <select name="emergencyRelation" class="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500">
+                            <option value="">Seleccionar...</option>
+                            <option value="Cónyuge">Cónyuge</option>
+                            <option value="Padre/Madre">Padre/Madre</option>
+                            <option value="Hijo/a">Hijo/a</option>
+                            <option value="Hermano/a">Hermano/a</option>
+                            <option value="Otro Familiar">Otro Familiar</option>
+                            <option value="Amigo/a">Amigo/a</option>
+                        </select>
+                    </div>
+
+                    <!-- Submit button -->
+                    <div class="md:col-span-2 mt-6 flex justify-end">
+                        <button type="button" id="cancelPatientBtn" class="bg-gray-200 text-gray-700 px-6 py-2 rounded-lg mr-2">Cancelar</button>
+                        <button type="submit" class="bg-primary-600 text-white px-6 py-2 rounded-lg">Registrar Paciente</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <script>
+        // Set current date
+        document.addEventListener('DOMContentLoaded', function() {
+            const today = new Date();
+            const formattedDate = today.getDate().toString().padStart(2, '0') + '/' + 
+                                (today.getMonth() + 1).toString().padStart(2, '0') + '/' + 
+                                today.getFullYear();
+            document.getElementById('current-date').textContent = formattedDate;
+        });
+        
         // Mobile menu toggle
-        document.querySelector('button').addEventListener('click', function() {
+        document.querySelector('header button').addEventListener('click', function() {
             const sidebar = document.querySelector('aside');
             sidebar.classList.toggle('hidden');
         });
@@ -359,6 +464,105 @@
                 examContainer.style.display = 'block';
             } else if (this.value === 'imagenologia') {
                 imagingContainer.style.display = 'block';
+            }
+        });
+        
+        // Modal functionality
+        const modal = document.getElementById('patientModal');
+        const openModalBtn = document.getElementById('openModalBtn');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const cancelPatientBtn = document.getElementById('cancelPatientBtn');
+        const patientForm = document.getElementById('patientRegistrationForm');
+
+        // Open modal
+        openModalBtn.addEventListener('click', function() {
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
+        });
+
+        // Close modal functions
+        function closeModal() {
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto'; // Re-enable scrolling
+            patientForm.reset(); // Reset form when closing
+        }
+
+        closeModalBtn.addEventListener('click', closeModal);
+        cancelPatientBtn.addEventListener('click', closeModal);
+
+        // Close modal when clicking outside
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Form submission
+        patientForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(patientForm);
+            const patientData = {};
+            for (const [key, value] of formData.entries()) {
+                patientData[key] = value;
+            }
+            
+            // In a real application, you would send this data to your backend API
+            console.log('Patient data to be submitted:', patientData);
+            
+            // For demo purposes, show success message and close modal
+            alert('Paciente registrado exitosamente.');
+            closeModal();
+            
+            // Optionally, you could auto-fill the order form with the new patient's data
+            document.getElementById('patient-id').value = patientData.idNumber;
+            document.getElementById('patient-name').value = patientData.firstName + ' ' + patientData.lastName;
+            document.getElementById('patient-dob').value = patientData.dob;
+            document.getElementById('patient-gender').value = patientData.gender;
+            document.getElementById('patient-phone').value = patientData.phone;
+            document.getElementById('patient-email').value = patientData.email;
+            document.getElementById('patient-address').value = patientData.address;
+            document.getElementById('patient-insurance').value = patientData.insurance;
+            document.getElementById('patient-policy').value = patientData.policyNumber;
+        });
+
+        // Patient search functionality
+        document.getElementById('search-patient-btn').addEventListener('click', function() {
+            const patientId = document.getElementById('patient-search').value.trim();
+            if (patientId) {
+                // Simulate API call to fetch patient data
+                // In a real application, this would be an actual API call
+                setTimeout(() => {
+                    // Mock patient data (in a real app, this would come from the server)
+                    const patientData = {
+                        id: patientId,
+                        name: 'Juan Carlos Pérez González',
+                        dob: '15/08/1985',
+                        gender: 'Masculino',
+                        phone: '+56 9 8765 4321',
+                        email: 'juan.perez@ejemplo.com',
+                        address: 'Av. Principal 123, Santiago',
+                        insurance: 'Seguro Nacional de Salud',
+                        policy: 'SNS-12345678'
+                    };
+                    
+                    // Fill the form with patient data
+                    document.getElementById('patient-id').value = patientData.id;
+                    document.getElementById('patient-name').value = patientData.name;
+                    document.getElementById('patient-dob').value = patientData.dob;
+                    document.getElementById('patient-gender').value = patientData.gender;
+                    document.getElementById('patient-phone').value = patientData.phone;
+                    document.getElementById('patient-email').value = patientData.email;
+                    document.getElementById('patient-address').value = patientData.address;
+                    document.getElementById('patient-insurance').value = patientData.insurance;
+                    document.getElementById('patient-policy').value = patientData.policy;
+                    
+                    // Show success message
+                    alert('Paciente encontrado. Los datos se han cargado en el formulario.');
+                }, 1000);
+            } else {
+                alert('Por favor ingrese un número de cédula para buscar.');
             }
         });
     </script>
