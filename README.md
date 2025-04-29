@@ -44,7 +44,24 @@ El sistema está desarrollado utilizando HTML5, Tailwind CSS y JavaScript, ofrec
 - Solicitud de exámenes complementarios
 - Programación de seguimiento
 
-### 4. Laboratorio
+### 4. Enfermería
+
+**Funcionalidad:** Gestiona el registro de signos vitales de los pacientes previo a la consulta médica.
+
+**Características principales:**
+- Gestión de cola de pacientes en tiempo real
+- Registro completo de signos vitales:
+  - Presión arterial (sistólica/diastólica)
+  - Frecuencia cardíaca
+  - Saturación de oxígeno
+  - Temperatura corporal
+  - Frecuencia respiratoria
+  - Peso y altura
+- Cálculo automático de IMC con categorización visual
+- Registro de observaciones adicionales
+- Preparación del paciente para la consulta médica
+
+### 5. Laboratorio
 
 **Funcionalidad:** Gestiona las solicitudes y resultados de exámenes de laboratorio.
 
@@ -60,7 +77,7 @@ El sistema está desarrollado utilizando HTML5, Tailwind CSS y JavaScript, ofrec
 - Histórico de exámenes por paciente
 - Valores de referencia automáticos
 
-### 5. Imagenología
+### 6. Imagenología
 
 **Funcionalidad:** Administra los estudios de diagnóstico por imágenes.
 
@@ -72,7 +89,7 @@ El sistema está desarrollado utilizando HTML5, Tailwind CSS y JavaScript, ofrec
 - Informes radiológicos
 - Histórico de estudios por paciente
 
-### 6. Administración
+### 7. Administración
 
 **Funcionalidad:** Proporciona herramientas para la gestión administrativa del sistema.
 
@@ -86,7 +103,7 @@ El sistema está desarrollado utilizando HTML5, Tailwind CSS y JavaScript, ofrec
 - Configuración de horarios de atención
 - Parámetros generales del sistema
 
-### 7. Reportes
+### 8. Reportes
 
 **Funcionalidad:** Genera informes y estadísticas sobre la actividad del sistema.
 
